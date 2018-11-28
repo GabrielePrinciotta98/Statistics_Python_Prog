@@ -59,4 +59,39 @@ print(len(cani_morti_cardio))
 #N° CANI MORTI PER CAUSE CARDIACHE: 87
 print(np.round((len(cani_morti_cardio) / len(cani_morti)) * 100, 2), '%')
 #PERCENTUALE CANI MORTI PER MORTE CARDIACA: 73.73%
+
+5)
+5.1)
+print(cani['GravitaIP'])
+#ORDINALE E NOMIANLE???
+5.2)
+#0, 1, 2, 3
+5.3)
+tab_GravitaIP_freq_rel = pd.crosstab(index = cani['GravitaIP'],
+                                     columns = ['Freq. Relativa'],
+                                     colnames = [' '],
+                                     normalize = True)
+print(tab_GravitaIP_freq_rel)
+5.4)
+cani['GravitaIP'].value_counts().plot.bar()
+plt.show()
+
+#6)
+#6.1)
+tab_Antiaritmico_freq_abs = pd.crosstab(index = cani['Antiaritmico'],
+                                        columns = ['Freq. Assoluta'],
+                                        colnames = [' '])
+#print(tab_Antiaritmico_freq_abs)
+#6.2)
+#N° CANI CHE ASSUMONO UN FAMACO PER ARITMIA: 11
+#6.3)
+#SÌ:= 1, NO:= 0
+#6.4)
+print(cani['MC'].dropna())
+tab_Antiaritmico_MC_freq_cong = pd.crosstab(index = cani['Antiaritmico'],
+                                            columns = cani['MC'],
+                                            colnames = ['MC'])
+print(tab_Antiaritmico_MC_freq_cong)
+#6.5)
+#9/87 * 100 = 10.34%
 """
