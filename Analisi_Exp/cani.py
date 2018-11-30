@@ -12,20 +12,21 @@ cani = pd.read_csv('/home/gabriele/Documenti/Università/Statistica/Analisi Espl
                     ESERCIZIO A
 
 1)
+#cani.info()
 #N° CANI SEGUITI: 161
 
 2)
 print(cani[cani['IP'] == 'SI'])
 #N° CANI CHE SOFFRONO DI IPERTENSIONE: 58
 
-3)
-3.1)
+#3)
+#3.1)
 cani_eta = cani['EtaAnni']
 print(cani_eta)
-bins = np.arange(min(cani_eta), max(cani_eta), 1)
+bins = np.arange(int(min(cani_eta)), (max(cani_eta)) + 1, 1)
 cani_eta.hist(bins = bins)
 plt.show()
-3.2)
+#3.2)
 print(cani_eta.median())
 print(min(cani_eta))
 print(max(cani_eta))
@@ -34,13 +35,13 @@ print(cani_eta.var())
 #MINIMO: 1.22
 #MASSIMO: 16.84
 #VARIANZA: 6.91
-3.3)
+#3.3)
 print(len(cani_eta[(cani_eta >= 12) & (cani_eta < 13)]))
 #N° CANI DI ETA COMPRESA TRA 12(INCLUSO) E 13(ESCLUSO): 32
-3.4)
+#3.4)
 #CANE PIÙ ANZIANO: 16.84
-3.5)
-#[12.23, 14,23)
+#3.5)
+#[12,13)
 
 #4)
 #4.1)
@@ -65,19 +66,20 @@ print(len(cani_morti_cardio))
 print(np.round((len(cani_morti_cardio) / len(cani_morti)) * 100, 2), '%')
 #PERCENTUALE CANI MORTI PER MORTE CARDIACA: 73.73%
 
-5)
-5.1)
+#5)
+#5.1)
 print(cani['GravitaIP'])
-#ORDINALE E NOMIANLE???
-5.2)
+#ORDINALE
+#5.2)
+print(cani['GravitaIP'].unique())
 #0, 1, 2, 3
-5.3)
+#5.3)
 tab_GravitaIP_freq_rel = pd.crosstab(index = cani['GravitaIP'],
                                      columns = ['Freq. Relativa'],
                                      colnames = [' '],
                                      normalize = True)
 print(tab_GravitaIP_freq_rel)
-5.4)
+#5.4)
 cani['GravitaIP'].value_counts().plot.bar()
 plt.show()
 
@@ -150,8 +152,8 @@ plt.scatter(cani['Allodiast'], cani['EDVI'])
 plt.show()
 print(cani['Allodiast'].corr(cani['EDVI']))
 #NON SONO INDIPENDENTI (INDICE DI CORRELAZIONE DI 0.90!!)
-
-            ESERCIZIO B
+"""
+#            ESERCIZIO B
 
 cani_morti = cani[cani['MORTE'] == 1]
 #print(cani_morti)
@@ -188,6 +190,8 @@ cani_morti_cause_cardiache = cani_morti_with_MC_and_OndaEA[cani_morti_with_MC_an
 #7)
 print(len(cani_morti_cause_cardiache[cani_morti_cause_cardiache['OndaEA'] >= s]))
 print(len(cani_morti_altre_cause[cani_morti_altre_cause['OndaEA'] < s]))
-
+#N° MORTI CAUSE CAARDIACHE: 41
+#N° MORTI ALTRE CAUSE: 12
+"""
 #8)
 """
