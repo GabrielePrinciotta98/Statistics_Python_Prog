@@ -152,7 +152,7 @@ plt.scatter(cani['Allodiast'], cani['EDVI'])
 plt.show()
 print(cani['Allodiast'].corr(cani['EDVI']))
 #NON SONO INDIPENDENTI (INDICE DI CORRELAZIONE DI 0.90!!)
-"""
+
 #            ESERCIZIO B
 
 cani_morti = cani[cani['MORTE'] == 1]
@@ -165,7 +165,7 @@ cani_morti_with_MC_and_OndaEA = cani_morti[(cani_morti['MC'].notna()) & (cani_mo
 #ORDINALE (MA ANCHE SCALARE???)
 
 #2)
-cani_morti_with_MC_and_OndaEA['OndaEA'].plot.box()
+#cani_morti_with_MC_and_OndaEA['OndaEA'].plot.box()
 #plt.show()
 
 #3)
@@ -192,6 +192,28 @@ print(len(cani_morti_cause_cardiache[cani_morti_cause_cardiache['OndaEA'] >= s])
 print(len(cani_morti_altre_cause[cani_morti_altre_cause['OndaEA'] < s]))
 #N° MORTI CAUSE CAARDIACHE: 41
 #N° MORTI ALTRE CAUSE: 12
-"""
+
 #8)
+var = cani_morti_with_MC_and_OndaEA
+print(var)
+vp = len(var[(var['OndaEA'] >= s) & (var['MC'] == 1)])
+fp = len(var[(var['OndaEA'] >= s) & (var['MC'] == 0)])
+vn = len(var[(var['OndaEA'] < s) & (var['MC'] == 0)])
+fn = len(var[(var['OndaEA'] < s) & (var['MC'] == 1)])
+print(vp, fp, vn ,fn)
+
+sens = vp / (vp + fn)
+spec = vn / (vn + fp)
+print(sens, spec)
+
+preds = var['OndaEA'] >= s
+fpr, tpr, _ = metrics.roc_curve(var['MC'], preds)
+
+plt.plot(fpr, tpr)
+plt.plot([0,1], [0,1], dashes = [3,3], color = 'gray')
+plt.xlim([-0.01, 1])
+plt.ylim([0, 1.01])
+plt.axis('equal')
+
+plt.show()
 """
